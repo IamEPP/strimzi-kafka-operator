@@ -417,6 +417,9 @@ public class KafkaST extends AbstractST {
                     } else if (status.getSucceeded() != null && status.getSucceeded() == 1) {
                         LOGGER.debug("Poll job succeeded");
                         return true;
+                    } else if (status.getActive() == null){
+                        LOGGER.debug("Poll job doesn't have active status");
+                        return false;
                     } else if (status.getActive() > 0) {
                         LOGGER.debug("Poll job has active");
                         return false;
